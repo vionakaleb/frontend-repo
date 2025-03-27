@@ -19,13 +19,14 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/store/store';
 import { fetchUserInfo } from '@/store/features/userSlice';
+import { UserModel } from "@turbo-monorepo/shared";
 
-interface IUser {
-    id: string;
-    totalAverageWeightRatings: number;
-    numberOfRents: number;
-    recentlyActive: string;
-}
+// interface IUser {
+//     id: string;
+//     totalAverageWeightRatings: number;
+//     numberOfRents: number;
+//     recentlyActive: string;
+// }
 
 export const UserDashboard = () => {
   const router = useRouter();
@@ -65,7 +66,7 @@ export const UserDashboard = () => {
     setPage(0);
   };
 
-  const filteredData = userData?.length ? userData?.filter((user: IUser) =>
+  const filteredData = userData?.length ? userData?.filter((user: UserModel) =>
     user.id.toLowerCase().includes(search.toLowerCase())
   ) : [];
 
@@ -111,7 +112,7 @@ export const UserDashboard = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {filteredData?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((user: IUser, index: string) => (
+              {filteredData?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((user: UserModel, index: string) => (
                 <TableRow key={index}>
                   <TableCell>{user.id}</TableCell>
                   <TableCell>{user.totalAverageWeightRatings}</TableCell>
