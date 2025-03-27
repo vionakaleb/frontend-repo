@@ -1,33 +1,10 @@
-import { auth, functions } from '@/config/firebase';
-import { httpsCallable } from 'firebase/functions';
+import axios from 'axios';
 
-export const getUserInfo = async () => {
-  const user = auth.currentUser;
-  if (!user) throw new Error('No user logged in');
-
+export async function getUserInfo() {
   try {
-    // Using Firebase Functions instead of direct fetch
-    const getUserInfoFn = httpsCallable(functions, 'getUserInfo');
-    const result = await getUserInfoFn();
-    
-    return result.data;
-  } catch (error: any) {
-    console.error('Error fetching user info:', error);
-    throw new Error(error.message || 'Failed to fetch user data');
+    const response = await axios.get("http://localhost:5000/api/users");
+    return response;
+  } catch (error) {
+    console.error("Error fetching data:", error);
   }
-};
-
-// Add more API functions as needed
-export const updateUserInfo = async (data: any) => {
-  const user = auth.currentUser;
-  if (!user) throw new Error('No user logged in');
-
-  try {
-    const updateUserInfoFn = httpsCallable(functions, 'updateUserInfo');
-    const result = await updateUserInfoFn(data);
-    return result.data;
-  } catch (error: any) {
-    console.error('Error updating user info:', error);
-    throw new Error(error.message || 'Failed to update user data');
-  }
-}; 
+}

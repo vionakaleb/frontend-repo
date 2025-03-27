@@ -14,6 +14,7 @@
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^6.4.8",
     "@reduxjs/toolkit": "^2.6.1",
+    "axios": "^1.8.4",
     "firebase": "^11.5.0",
     "next": "15.2.4",
     "react": "^19.0.0",
@@ -27,6 +28,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "tailwindcss": "^4",
+    "turbo": "^2.4.4",
     "typescript": "^5"
   }
 }

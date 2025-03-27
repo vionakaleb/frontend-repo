@@ -18,7 +18,7 @@ export const fetchUserInfo = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await getUserInfo();
-      return response;
+      return response?.data;
     } catch (error) {
       return rejectWithValue('Failed to fetch user information');
     }

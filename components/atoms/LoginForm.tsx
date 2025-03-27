@@ -10,8 +10,6 @@ import {
   Paper,
   Alert
 } from '@mui/material';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../config/firebase'; // Ensure this path is correct
 
 export const LoginForm = () => {
   const router = useRouter();
@@ -22,7 +20,6 @@ export const LoginForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await signInWithEmailAndPassword(auth, email, password);
       router.push('/dashboard');
     } catch (err) {
       setError('Failed to login. Please check your credentials.');
